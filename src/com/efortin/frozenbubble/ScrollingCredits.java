@@ -1,9 +1,9 @@
 /*
  *                 [[ Frozen-Bubble ]]
  *
- * Copyright © 2000-2003 Guillaume Cottenceau.
- * Java sourcecode - Copyright © 2003 Glenn Sanson.
- * Additional source - Copyright © 2013 Eric Fortin.
+ * Copyright �� 2000-2003 Guillaume Cottenceau.
+ * Java sourcecode - Copyright �� 2003 Glenn Sanson.
+ * Additional source - Copyright �� 2013 Eric Fortin.
  *
  * This code is distributed under the GNU General Public License
  *
@@ -44,13 +44,15 @@
  * Android port:
  *    Pawel Aleksander Fedorynski <pfedor@fuw.edu.pl>
  *    Eric Fortin <videogameboy76 at yahoo.com>
- *    Copyright © Google Inc.
+ *    Copyright �� Google Inc.
  *
  *          [[ http://glenn.sanson.free.fr/fb/ ]]
  *          [[ http://www.frozen-bubble.org/   ]]
  */
 
 package com.efortin.frozenbubble;
+
+import java.io.IOException;
 
 import org.jfedor.frozenbubble.FrozenBubble;
 import org.jfedor.frozenbubble.R;
@@ -67,8 +69,15 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
+import com.kii.cloud.storage.exception.app.BadRequestException;
+import com.kii.cloud.storage.exception.app.ConflictException;
+import com.kii.cloud.storage.exception.app.ForbiddenException;
+import com.kii.cloud.storage.exception.app.NotFoundException;
+import com.kii.cloud.storage.exception.app.UnauthorizedException;
+import com.kii.cloud.storage.exception.app.UndefinedException;
 import com.peculiargames.andmodplug.MODResourcePlayer;
 import com.peculiargames.andmodplug.PlayerThread;
 
@@ -78,6 +87,7 @@ public class ScrollingCredits extends Activity implements Runnable {
   private MODResourcePlayer resplayer = null;
   private static final int DEFAULT_SONG = 0;
   private final int[] MODlist = { R.raw.worldofpeace };
+  private PreferencesManager prefs = PreferencesManager.getInstance(this);
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -198,6 +208,12 @@ public class ScrollingCredits extends Activity implements Runnable {
     linearLayout.addView(imageView);
     // Set the content view to this layout and display the image.
     setContentView(linearLayout);
+    try {
+		prefs.load();
+	} catch (Exception e) {
+		Toast.makeText(this, "Kii Cloud connection error", Toast.LENGTH_SHORT).show();
+		finish();
+	}
   }
 
   /**
@@ -223,9 +239,7 @@ public class ScrollingCredits extends Activity implements Runnable {
     // Load and apply the specified XML layout.
     setContentView(layoutResID);
     // Set full screen mode based on the game preferences.
-    SharedPreferences mConfig =
-      getSharedPreferences(FrozenBubble.PREFS_NAME, Context.MODE_PRIVATE);
-    boolean fullscreen = mConfig.getBoolean("fullscreen", true);
+    boolean fullscreen = prefs.getBoolean("fullscreen", true);
 
     if (fullscreen) {
       getWindow().addFlags(flagFs);

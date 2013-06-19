@@ -1,9 +1,9 @@
 /*
  *                 [[ Frozen-Bubble ]]
  *
- * Copyright © 2000-2003 Guillaume Cottenceau.
- * Java sourcecode - Copyright © 2003 Glenn Sanson.
- * Additional source - Copyright © 2013 Eric Fortin.
+ * Copyright ï¿½ 2000-2003 Guillaume Cottenceau.
+ * Java sourcecode - Copyright ï¿½ 2003 Glenn Sanson.
+ * Additional source - Copyright ï¿½ 2013 Eric Fortin.
  *
  * This code is distributed under the GNU General Public License
  *
@@ -44,7 +44,7 @@
  * Android port:
  *    Pawel Aleksander Fedorynski <pfedor@fuw.edu.pl>
  *    Eric Fortin <videogameboy76 at yahoo.com>
- *    Copyright © Google Inc.
+ *    Copyright ï¿½ Google Inc.
  *
  *          [[ http://glenn.sanson.free.fr/fb/ ]]
  *          [[ http://www.frozen-bubble.org/   ]]
@@ -56,7 +56,7 @@
  */
 
 /*
- * Copyright © 2007 Google Inc.
+ * Copyright ï¿½ 2007 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,7 +74,6 @@
 
 package org.jfedor.frozenbubble;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.List;
@@ -83,7 +82,6 @@ import java.util.TimerTask;
 import java.util.Vector;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -98,6 +96,7 @@ import android.view.SurfaceView;
 
 import com.efortin.frozenbubble.HighscoreDO;
 import com.efortin.frozenbubble.HighscoreManager;
+import com.efortin.frozenbubble.PreferencesManager;
 
 class GameView extends SurfaceView implements SurfaceHolder.Callback {
   private boolean    mBlankScreen = false;
@@ -210,6 +209,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private SurfaceHolder mSurfaceHolder;
 
     private final HighscoreManager mHighscoreManager;
+    private PreferencesManager prefs = PreferencesManager.getInstance();
 
     Vector<BmpWrap> mImageList;
 
@@ -374,11 +374,10 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
           byte[]      levels = new byte[size];
           is.read(levels);
           is.close();
-          SharedPreferences sp = mContext.getSharedPreferences(
-            FrozenBubble.PREFS_NAME, Context.MODE_PRIVATE);
-          startingLevel = sp.getInt("level", 0);
+  		  prefs.load(); 
+          startingLevel = prefs.getInt("level", 0);
           mLevelManager = new LevelManager(levels, startingLevel);
-        } catch (IOException e) {
+        } catch (Exception e) {
           // Should never happen.
           throw new RuntimeException(e);
         }
