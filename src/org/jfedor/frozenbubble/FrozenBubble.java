@@ -1,9 +1,9 @@
 /*
  *                 [[ Frozen-Bubble ]]
  *
- * Copyright ��� 2000-2003 Guillaume Cottenceau.
- * Java sourcecode - Copyright ��� 2003 Glenn Sanson.
- * Additional source - Copyright ��� 2013 Eric Fortin.
+ * Copyright ��������� 2000-2003 Guillaume Cottenceau.
+ * Java sourcecode - Copyright ��������� 2003 Glenn Sanson.
+ * Additional source - Copyright ��������� 2013 Eric Fortin.
  *
  * This code is distributed under the GNU General Public License
  *
@@ -44,7 +44,7 @@
  * Android port:
  *    Pawel Aleksander Fedorynski <pfedor@fuw.edu.pl>
  *    Eric Fortin <videogameboy76 at yahoo.com>
- *    Copyright ��� Google Inc.
+ *    Copyright ��������� Google Inc.
  *
  *          [[ http://glenn.sanson.free.fr/fb/ ]]
  *          [[ http://www.frozen-bubble.org/   ]]
@@ -57,7 +57,7 @@
  */
 
 /*
- * Copyright ��� 2007 Google Inc.
+ * Copyright ��������� 2007 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -696,7 +696,7 @@ public class FrozenBubble extends Activity implements GameView.GameListener,
 			//
 			// In API level 9, SCREEN_ORIENTATION_SENSOR_PORTRAIT was added
 			// to ActivityInfo. This mode was actually supported by earlier
-			// APIs, but a definition was not yet explicity defined.
+			// APIs, but a definition was not yet explicitly defined.
 			//
 			// This mode allows the device to display the screen in either
 			// normal or reverse portrait mode based on the device

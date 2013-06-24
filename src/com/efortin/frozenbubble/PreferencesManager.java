@@ -14,7 +14,6 @@ import com.kii.cloud.storage.exception.app.ForbiddenException;
 import com.kii.cloud.storage.exception.app.NotFoundException;
 import com.kii.cloud.storage.exception.app.UnauthorizedException;
 import com.kii.cloud.storage.exception.app.UndefinedException;
-import com.kii.cloud.storage.query.KiiClause;
 import com.kii.cloud.storage.query.KiiQuery;
 import com.kii.cloud.storage.query.KiiQueryResult;
 
@@ -46,7 +45,7 @@ public class PreferencesManager {
 		Log.d(TAG, "Initializing preferences");
 		if(cloudPrefs == null)
 			cloudPrefs = userBucket.object();
-		cloudPrefs.set("preferences", true);
+		//cloudPrefs.set("preferences", true);
 		cloudPrefs.save();
 	
 		return cloudPrefs;
@@ -58,7 +57,8 @@ public class PreferencesManager {
 		if(userBucket == null)
 			userBucket = Kii.user().bucket(Constants.BUCKET_NAME);
 		// Define query conditions 
-		KiiQuery query = new KiiQuery(KiiClause.equals("preferences", true));
+		//KiiQuery query = new KiiQuery(KiiClause.equals("preferences", true)); // get objects where preferences attribute is set to true
+		KiiQuery query = new KiiQuery(); // get all objects
 		query.setLimit(1);
 		// Query the bucket for preferences object
 	    KiiQueryResult<KiiObject> result = userBucket.query(query);
@@ -77,7 +77,7 @@ public class PreferencesManager {
 		Log.d(TAG, "Saved preferences");
 	}
 	
-	public void saveAllField(boolean flag) throws BadRequestException, ConflictException, ForbiddenException, NotFoundException, UnauthorizedException, UndefinedException, IOException{
+	public void saveAllFields(boolean flag) throws BadRequestException, ConflictException, ForbiddenException, NotFoundException, UnauthorizedException, UndefinedException, IOException{
 		cloudPrefs.saveAllFields(flag);
 		Log.d(TAG, "Saved all preferences");
 	}
