@@ -1,3 +1,5 @@
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/germanviscuso/frozenbubble-kii/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 The Android port of the Frozen Bubble game.  Developed with SDK v21.1.0, using
 API level 4 (version 1.6 - Donut).
 
