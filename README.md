@@ -10,7 +10,8 @@ The Android port was initially created by Pawel Aleksander Fedorynski, with
 additional development provided by Eric Fortin.
 
 This version has been modified by German Viscuso to move several functionalities
-to the cloud using Kii Cloud mobile backend (www.kii.com) 
+to the cloud using Kii Cloud mobile backend (www.kii.com). For more info check 
+the <a href="http://blog.kii.com/?tag=frozenbubble">Kii Blog</a>. 
 
 This code is distributed under the GNU General Public License.
 
